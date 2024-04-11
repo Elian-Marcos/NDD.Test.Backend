@@ -1,5 +1,5 @@
-﻿using NDD.Test.Domain.Commands.Requests;
-using NDD.Test.Domain.Commands.Responses;
+﻿using NDD.Test.Application.Commands.Requests;
+using NDD.Test.Application.Commands.Responses;
 
 namespace NDD.Test.Domain.Interfaces.Handler
 {

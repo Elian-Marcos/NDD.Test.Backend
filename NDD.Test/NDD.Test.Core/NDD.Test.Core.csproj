@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NDD.Test.Application\NDD.Test.Application.csproj" />
     <ProjectReference Include="..\NDD.Test.Domain\NDD.Test.Domain.csproj" />
   </ItemGroup>
 

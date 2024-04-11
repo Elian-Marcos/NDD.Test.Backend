@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NDD.Test.Application\NDD.Test.Application.csproj" />
     <ProjectReference Include="..\NDD.Test.Core\NDD.Test.Core.csproj" />
   </ItemGroup>
 

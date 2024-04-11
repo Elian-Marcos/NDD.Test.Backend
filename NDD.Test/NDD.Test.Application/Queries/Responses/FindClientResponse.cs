@@ -1,7 +1,10 @@
-﻿namespace NDD.Test.Domain.Commands.Requests
+﻿using MediatR;
+
+namespace NDD.Test.Application.Queries.Responses
 {
-    public class CreateClientRequest
+    public class FindClientResponse
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string CPF { get; set; }
         public string Gender { get; set; }

@@ -1,9 +1,11 @@
+using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using NDD.Test.Application.AutoMapper;
 using NDD.Test.Core.Data;
 using NDD.Test.Core.Repository;
-using NDD.Test.Domain.Handlers;
-using NDD.Test.Domain.Interfaces.Handler;
 using NDD.Test.Domain.Interfaces.Repository;
+using System.Reflection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +18,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddTransient<ICreateClientHandler, CreateClientHandler>();
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddFluentValidationAutoValidation();
+
+builder.Services.AddAutoMapper(typeof(ConfigurationMapper));
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

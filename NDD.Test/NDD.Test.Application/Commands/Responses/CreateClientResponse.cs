@@ -1,4 +1,4 @@
-﻿namespace NDD.Test.Domain.Commands.Responses
+﻿namespace NDD.Test.Application.Commands.Responses
 {
     public class CreateClientResponse
     {
