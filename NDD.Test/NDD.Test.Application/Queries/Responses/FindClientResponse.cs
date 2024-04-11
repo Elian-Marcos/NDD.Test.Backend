@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace NDD.Test.Application.Queries.Responses
+﻿namespace NDD.Test.Application.Queries.Responses
 {
     public class FindClientResponse
     {

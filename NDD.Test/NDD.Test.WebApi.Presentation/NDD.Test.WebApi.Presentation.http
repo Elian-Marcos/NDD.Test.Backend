@@ -1,6 +1,6 @@
 @NDD.Test.WebApi.Presentation_HostAddress = http://localhost:5282
 
-GET {{NDD.Test.WebApi.Presentation_HostAddress}}/weatherforecast/
+GET {{NDD.Test.WebApi.Presentation_HostAddress}}/api/v1/clients/
 Accept: application/json
 
 ###

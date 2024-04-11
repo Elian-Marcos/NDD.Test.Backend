@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
 using NDD.Test.Application.Queries.Requests;
-using NDD.Test.Application.Queries.Responses;
+using NDD.Test.Domain.Entities;
 using NDD.Test.Domain.Interfaces.Repository;
 
 namespace NDD.Test.Application.Handlers
 {
-    public class FindClientAllHandler : IRequestHandler<FindClientAllRequest, List<FindClientResponse>>
+    public class FindClientAllHandler : IRequestHandler<FindClientAllRequest, IEnumerable<Client>>
     {
         private readonly IClientRepository _clientRepository;
         private readonly IMapper _mapper;
@@ -17,11 +17,9 @@ namespace NDD.Test.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<List<FindClientResponse>> Handle(FindClientAllRequest request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Client>> Handle(FindClientAllRequest request, CancellationToken cancellationToken)
         {
-            var clients = await _clientRepository.GetAll();
-
-            return _mapper.Map<List<FindClientResponse>>(clients);
+            return await _clientRepository.GetAll();
         }
 
     }

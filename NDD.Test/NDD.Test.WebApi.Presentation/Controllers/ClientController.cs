@@ -6,14 +6,14 @@ using NDD.Test.Application.Queries.Requests;
 namespace NDD.Test.WebApi.Presentation.Controllers
 {
     [ApiController]
-    [Route("clients")]
+    [Route("api/v1/clients")]
     public class ClientController : ControllerBase
     {
         [HttpPost]
         [Route("")]
-        public IActionResult Create([FromServices]IMediator mediator, [FromBody]CreateClientRequest command)
+        public async Task<IActionResult> Create([FromServices]IMediator mediator, [FromBody]CreateClientRequest command)
         {
-            var response = mediator.Send(command);
+            var response = await mediator.Send(command);
             return Ok(response);
         }
 
@@ -26,7 +26,7 @@ namespace NDD.Test.WebApi.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
+        [Route("getAll")]
         public IActionResult GetAll([FromServices] IMediator mediator, [FromQuery] FindClientAllRequest command)
         {
             var response = mediator.Send(command);
@@ -34,7 +34,7 @@ namespace NDD.Test.WebApi.Presentation.Controllers
         }
 
         [HttpPut]
-        [Route("Update")]
+        [Route("update")]
         public IActionResult Update([FromServices]IMediator mediator, [FromBody]UpdateClientRequest command)
         {
             var response = mediator.Send(command);
@@ -43,7 +43,7 @@ namespace NDD.Test.WebApi.Presentation.Controllers
 
 
         [HttpPut]
-        [Route("Delete")]
+        [Route("delete")]
         public IActionResult Delete([FromServices] IMediator mediator, [FromBody] DeleteClientRequest command)
         {
             var response = mediator.Send(command);

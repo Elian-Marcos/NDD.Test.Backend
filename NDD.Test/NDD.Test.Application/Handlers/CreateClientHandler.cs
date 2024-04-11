@@ -18,7 +18,7 @@ namespace NDD.Test.Domain.Handlers
             _validator = validator;
         }
 
-        public Task<CreateClientResponse> Handle(CreateClientRequest command, CancellationToken cancellation)
+        public async Task<CreateClientResponse> Handle(CreateClientRequest command, CancellationToken cancellation)
         {
             var client = new Client(command.Name, command.CPF, command.Gender, command.PhoneNumber, command.Email, command.BirthDate, command.Observation);
 
@@ -26,7 +26,7 @@ namespace NDD.Test.Domain.Handlers
 
             if (_validator.Validate(client).IsValid)
             {
-                _repository.CreateAsync(client);
+                await _repository.CreateAsync(client);
 
                 result = new  CreateClientResponse()
                 {
@@ -40,7 +40,7 @@ namespace NDD.Test.Domain.Handlers
                     Observation = client.Observation
                 };
             }
-            return Task.FromResult(result);
+            return await Task.FromResult(result);
         }
     }
 }

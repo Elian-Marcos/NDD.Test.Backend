@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using NDD.Test.Application.Queries.Responses;
+using NDD.Test.Domain.Entities;
 
 namespace NDD.Test.Application.Queries.Requests
 {
-    public class FindClientAllRequest : IRequest<List<FindClientResponse>>
+    public class FindClientAllRequest : IRequest<IEnumerable<Client>>
     {
     }
 }

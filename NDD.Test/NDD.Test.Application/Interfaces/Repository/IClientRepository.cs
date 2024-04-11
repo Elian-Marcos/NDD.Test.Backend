@@ -7,7 +7,7 @@ namespace NDD.Test.Domain.Interfaces.Repository
     {
         Task CreateAsync(Client client);
         Task<Client?> GetById(Guid id);
-        Task<List<Client>> GetAll();
+        Task<IEnumerable<Client>> GetAll();
         Task UpdateAsync(Client client);
         Task DeleteAsync(Client client);
     }

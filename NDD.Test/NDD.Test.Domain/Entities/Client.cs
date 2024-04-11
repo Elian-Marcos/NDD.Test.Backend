@@ -2,6 +2,7 @@
 {
     public class Client
     {
+        public Client() { }
         public Client(string name, string cpf, string gender, string phoneNumber, string email, DateTime birthDate, string observation = "")
         {
             Id = Guid.NewGuid();
@@ -14,8 +15,8 @@
             Observation = observation;
         }
 
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; } 
+        public string Name { get; set; } 
         public string CPF { get; set; }
         public string Gender { get; set; }
         public string PhoneNumber { get; set; }

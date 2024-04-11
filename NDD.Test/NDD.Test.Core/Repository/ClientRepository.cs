@@ -2,6 +2,7 @@
 using NDD.Test.Core.Data;
 using NDD.Test.Domain.Entities;
 using NDD.Test.Domain.Interfaces.Repository;
+using System.Data.SqlTypes;
 
 namespace NDD.Test.Core.Repository
 {
@@ -15,7 +16,7 @@ namespace NDD.Test.Core.Repository
 
         public async Task CreateAsync(Client client)
         {
-            await _dataDbContext.AddAsync(client);
+            await _dataDbContext.Client.AddAsync(client);
             await _dataDbContext.SaveChangesAsync();
         }
 
@@ -24,9 +25,17 @@ namespace NDD.Test.Core.Repository
             return await _dataDbContext.Client.FindAsync(id);
         }
 
-        public async Task<List<Client>> GetAll()
+        public async Task<IEnumerable<Client>> GetAll()
         {
-            return await _dataDbContext.Client.ToListAsync();
+            try
+            {
+                return await _dataDbContext.Client.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                await Console.Out.WriteLineAsync(   );
+            }
+            return new List<Client>();
         }
 
         public async Task UpdateAsync(Client client)
