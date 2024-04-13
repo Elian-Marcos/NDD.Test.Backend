@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NDD.Test.Application.Commands.Requests;
 using NDD.Test.Application.Queries.Requests;
+using NDD.Test.Domain.Entities;
 
 namespace NDD.Test.WebApi.Presentation.Controllers
 {
@@ -10,44 +11,46 @@ namespace NDD.Test.WebApi.Presentation.Controllers
     public class ClientController : ControllerBase
     {
         [HttpPost]
-        [Route("")]
-        public async Task<IActionResult> Create([FromServices]IMediator mediator, [FromBody]CreateClientRequest command)
+        [Route("create")]
+        public async Task<ActionResult<Client>> Create([FromServices]IMediator mediator, [FromBody]CreateClientRequest command)
         {
-            var response = await mediator.Send(command);
-            return Ok(response);
+                var response = await mediator.Send(command);
+                return Ok(response);
         }
 
         [HttpGet]
-        [Route("")]
-        public IActionResult GetById([FromServices]IMediator mediator, [FromQuery] FindClientByIdRequest command)
+        [Route("getById")]
+        public async Task<ActionResult<Client>> GetById([FromServices]IMediator mediator, [FromQuery] FindClientByIdRequest command)
         {
-            var response = mediator.Send(command);
+            var response = await mediator.Send(command);
+            if (response == null)
+                return NotFound();
             return Ok(response);
         }
 
         [HttpGet]
         [Route("getAll")]
-        public IActionResult GetAll([FromServices] IMediator mediator, [FromQuery] FindClientAllRequest command)
+        public async Task<ActionResult<IEnumerable<Client>>> GetAll([FromServices] IMediator mediator, [FromQuery] FindClientAllRequest command)
         {
-            var response = mediator.Send(command);
+            var response = await mediator.Send(command);
             return Ok(response);
         }
 
         [HttpPut]
         [Route("update")]
-        public IActionResult Update([FromServices]IMediator mediator, [FromBody]UpdateClientRequest command)
+        public async Task<ActionResult<Client>> Update([FromServices]IMediator mediator, [FromBody]UpdateClientRequest command)
         {
-            var response = mediator.Send(command);
+            var response = await mediator.Send(command);
             return Ok(response);
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("delete")]
-        public IActionResult Delete([FromServices] IMediator mediator, [FromBody] DeleteClientRequest command)
+        public async Task<IActionResult> Delete([FromServices] IMediator mediator, DeleteClientRequest command)
         {
-            var response = mediator.Send(command);
-            return Ok(response);
+            await mediator.Send(command);
+            return NoContent();
         }
     }
 }

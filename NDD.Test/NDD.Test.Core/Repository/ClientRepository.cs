@@ -27,15 +27,7 @@ namespace NDD.Test.Core.Repository
 
         public async Task<IEnumerable<Client>> GetAll()
         {
-            try
-            {
-                return await _dataDbContext.Client.ToListAsync();
-            }
-            catch (Exception e)
-            {
-                await Console.Out.WriteLineAsync(   );
-            }
-            return new List<Client>();
+            return await _dataDbContext.Client.ToListAsync();
         }
 
         public async Task UpdateAsync(Client client)
